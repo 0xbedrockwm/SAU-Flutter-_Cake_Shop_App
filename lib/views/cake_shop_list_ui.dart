@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_cake_shop_app/models/cash_shop.dart';
+import 'package:flutter_cake_shop_app/views/cake_shop_detial_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CakeShopListUi extends StatefulWidget {
@@ -188,7 +189,15 @@ class _CakeShopListUiState extends State<CakeShopListUi> {
                   itemBuilder: (context, index) {
                     return ListTile(
                       onTap: () {
-                        _makePhoneCall(cakeShops[index].phone!);
+                        //เปิดไปหน้า cakeshop detailUI แบบย้อนกลับได้ พร้อมส่งข่อมูลร้านไปด้วย
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CakeShopDetialUi(
+                              cakeShop: cakeShops[index],
+                            ),
+                          ),
+                        );
                       },
                       leading: Image.asset(
                         'assests/images/' + cakeShops[index].image1!,
